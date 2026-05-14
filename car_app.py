@@ -227,61 +227,6 @@ if predict_btn:
 
             for factor in factors:
                 st.markdown(f"- {factor}")
-        with analysis_col2:
-
-            max_price = max(price * 1.2, predicted_price * 1.2)
-
-            fig = go.Figure(go.Indicator(
-                mode="gauge+number",
-                value=predicted_price,
-                title={'text': "Estimated Price"},
-                number={'suffix': "L"},
-                gauge={
-                    'axis': {'range': [0, max_price]},
-                    'bar': {'color': "#e74c3c"},
-
-                    'steps': [
-                        {
-                            'range': [0, max_price * 0.3],
-                            'color': "lightgray"
-                        },
-
-                        {
-                            'range': [max_price * 0.3, max_price * 0.7],
-                            'color': "lightyellow"
-                        },
-
-                        {
-                            'range': [max_price * 0.7, max_price],
-                            'color': "lightgreen"
-                        }
-                    ],
-
-                    'threshold': {
-                        'line': {
-                            'color': "blue",
-                            'width': 4
-                        },
-                        'thickness': 0.75,
-                        'value': predicted_price
-                    }
-                }
-            ))
-
-            fig.update_layout(
-                height=320,
-                margin=dict(
-                    l=20,
-                    r=20,
-                    t=50,
-                    b=20
-                )
-            )
-
-            st.plotly_chart(
-                fig,
-                use_container_width=True
-            )
         st.markdown("---")
         st.subheader("Your Car Details")
 
